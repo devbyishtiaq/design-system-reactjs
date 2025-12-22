@@ -1,0 +1,96 @@
+// Design System Theme Configuration
+// This file contains all design tokens (colors, typography, spacing, etc.)
+// that will override Bootstrap's default variables
+
+// Import Bootstrap's variables first to have access to them
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+// ============================================
+// DESIGN TOKENS - FOUNDATIONS
+// ============================================
+
+// Colors - Semantic Color Scale
+// TODO: Replace with actual Figma design system colors
+$gray-scale: (
+  50: #f9fafb,
+  100: #f3f4f6,
+  200: #e5e7eb,
+  300: #d1d5db,
+  400: #9ca3af,
+  500: #6b7280,
+  600: #4b5563,
+  700: #374151,
+  800: #1f2937,
+  900: #111827,
+);
+
+$error-colors: (
+  50: #fef2f2,
+  100: #fee2e2,
+  500: #ef4444,
+  600: #dc2626,
+  700: #b91c1c,
+);
+
+$warning-colors: (
+  50: #fffbeb,
+  100: #fef3c7,
+  500: #f59e0b,
+  600: #d97706,
+  700: #b45309,
+);
+
+$success-colors: (
+  50: #f0fdf4,
+  100: #dcfce7,
+  500: #22c55e,
+  600: #16a34a,
+  700: #15803d,
+);
+
+// Typography - Poppins Font Family
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+$font-family-base: 'Poppins', sans-serif;
+
+// Border Radius Levels (8 levels)
+$border-radius-1: 2px;
+$border-radius-2: 4px;
+$border-radius-3: 6px;
+$border-radius-4: 8px;
+$border-radius-5: 12px;
+$border-radius-6: 16px;
+$border-radius-7: 24px;
+$border-radius-8: 32px;
+
+// Override Bootstrap's border radius variables
+$border-radius: $border-radius-4;
+$border-radius-sm: $border-radius-2;
+$border-radius-lg: $border-radius-6;
+$border-radius-xl: $border-radius-8;
+
+// ============================================
+// BOOTSTRAP VARIABLE OVERRIDES
+// ============================================
+
+// Override Bootstrap's color variables
+// TODO: Map Figma colors to Bootstrap's semantic colors
+// $primary: ...;
+// $secondary: ...;
+// $success: ...;
+// $danger: ...;
+// $warning: ...;
+// $info: ...;
+
+// Import Bootstrap after variable overrides
+@import 'bootstrap/scss/bootstrap';
+
+// ============================================
+// CUSTOM COMPONENT STYLES
+// ============================================
+
+// Custom styles for components that need additional styling
+// beyond Bootstrap's default classes will go here
+
