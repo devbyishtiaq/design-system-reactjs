@@ -2,90 +2,234 @@
 // This file contains all design tokens (colors, typography, spacing, etc.)
 // that will override Bootstrap's default variables
 
-// Import Bootstrap's variables first to have access to them
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins';
+// Use modern Sass modules for our code
+@use "sass:map";
+@use "sass:color";
+
+// Import Bootstrap's functions first (needed for color functions)
+// Note: Bootstrap still uses @import, so we must use @import here
+@import "bootstrap/scss/functions";
 
 // ============================================
 // DESIGN TOKENS - FOUNDATIONS
 // ============================================
 
-// Colors - Semantic Color Scale
-// TODO: Replace with actual Figma design system colors
+// Brand Colors
+$bright-azure-blue: #6586c3;
+$deep-teal: #1f7abc;
+$fire-engine-red: #872918;
+
+// Semantic Color Scales (12 shades each: 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950)
 $gray-scale: (
+  25: #fcfcfd,
   50: #f9fafb,
-  100: #f3f4f6,
-  200: #e5e7eb,
-  300: #d1d5db,
-  400: #9ca3af,
-  500: #6b7280,
-  600: #4b5563,
-  700: #374151,
-  800: #1f2937,
-  900: #111827,
+  100: #f2f4f7,
+  200: #e4e7ec,
+  300: #d0d5dd,
+  400: #98a2b3,
+  500: #667085,
+  600: #475467,
+  700: #344054,
+  800: #1d2939,
+  900: #101828,
+  950: #0c111d,
 );
 
-$error-colors: (
-  50: #fef2f2,
-  100: #fee2e2,
-  500: #ef4444,
-  600: #dc2626,
-  700: #b91c1c,
+$error-scale: (
+  25: #fffbfa,
+  50: #fef3f2,
+  100: #fee4e2,
+  200: #fecdca,
+  300: #fda29b,
+  400: #f97066,
+  500: #f04438,
+  600: #d92d20,
+  700: #b42318,
+  800: #912018,
+  900: #7a271a,
+  950: #55160c,
 );
 
-$warning-colors: (
-  50: #fffbeb,
-  100: #fef3c7,
-  500: #f59e0b,
-  600: #d97706,
-  700: #b45309,
+$warning-scale: (
+  25: #fffcf5,
+  50: #fffaeb,
+  100: #fef0c7,
+  200: #fedf89,
+  300: #fec84b,
+  400: #fdb022,
+  500: #f79009,
+  600: #dc6803,
+  700: #b54708,
+  800: #93370d,
+  900: #7a2e0e,
+  950: #4e1d09,
 );
 
-$success-colors: (
-  50: #f0fdf4,
-  100: #dcfce7,
-  500: #22c55e,
-  600: #16a34a,
-  700: #15803d,
+$success-scale: (
+  25: #f6fef9,
+  50: #ecfdf3,
+  100: #d1fadf,
+  200: #a6f4c5,
+  300: #6ce9a6,
+  400: #32d583,
+  500: #12876a,
+  600: #039855,
+  700: #027a48,
+  800: #05603a,
+  900: #054f31,
+  950: #053321,
 );
 
 // Typography - Poppins Font Family
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-$font-family-base: 'Poppins', sans-serif;
+$font-family-base: "Poppins", sans-serif;
 
-// Border Radius Levels (8 levels)
-$border-radius-1: 2px;
-$border-radius-2: 4px;
-$border-radius-3: 6px;
-$border-radius-4: 8px;
-$border-radius-5: 12px;
-$border-radius-6: 16px;
-$border-radius-7: 24px;
-$border-radius-8: 32px;
+// Spacing System (from Figma: 1px to 384px)
+// These values will be mapped to Bootstrap's $spacers map
+$spacing-px: 1px;
+$spacing-0_5: 0.125rem; // 2px
+$spacing-1: 0.25rem; // 4px
+$spacing-1_5: 0.375rem; // 6px
+$spacing-2: 0.5rem; // 8px
+$spacing-2_5: 0.625rem; // 10px
+$spacing-3: 0.75rem; // 12px
+$spacing-3_5: 0.875rem; // 14px
+$spacing-4: 1rem; // 16px
+$spacing-5: 1.25rem; // 20px
+$spacing-6: 1.5rem; // 24px
+$spacing-7: 1.75rem; // 28px
+$spacing-8: 2rem; // 32px
+$spacing-9: 2.25rem; // 36px
+$spacing-10: 2.5rem; // 40px
+$spacing-11: 2.75rem; // 44px
+$spacing-12: 3rem; // 48px
+$spacing-14: 3.5rem; // 56px
+$spacing-16: 4rem; // 64px
+$spacing-20: 5rem; // 80px
+$spacing-24: 6rem; // 96px
+$spacing-28: 7rem; // 112px
+$spacing-32: 8rem; // 128px
+$spacing-36: 9rem; // 144px
+$spacing-40: 10rem; // 160px
+$spacing-48: 12rem; // 192px
+$spacing-52: 13rem; // 208px
+$spacing-56: 14rem; // 224px
+$spacing-60: 15rem; // 240px
+$spacing-64: 16rem; // 256px
+$spacing-72: 18rem; // 288px
+$spacing-80: 20rem; // 320px
+$spacing-96: 24rem; // 384px
 
-// Override Bootstrap's border radius variables
-$border-radius: $border-radius-4;
-$border-radius-sm: $border-radius-2;
-$border-radius-lg: $border-radius-6;
-$border-radius-xl: $border-radius-8;
+// Border Radius Levels (from Figma)
+// Define as custom variables first, then map to Bootstrap variables
+$figma-radius-sm: 2px; // SM
+$figma-radius-default: 4px; // Default
+$figma-radius-md: 6px; // MD
+$figma-radius-lg: 8px; // LG
+$figma-radius-xl: 12px; // XL
+$figma-radius-2xl: 16px; // 2XL
+$figma-radius-3xl: 24px; // 3XL
+$figma-radius-full: 999px; // Full (for pill buttons/circles)
 
 // ============================================
 // BOOTSTRAP VARIABLE OVERRIDES
 // ============================================
 
-// Override Bootstrap's color variables
-// TODO: Map Figma colors to Bootstrap's semantic colors
-// $primary: ...;
-// $secondary: ...;
-// $success: ...;
-// $danger: ...;
-// $warning: ...;
-// $info: ...;
+// Map Figma brand colors to Bootstrap's semantic colors
+// Primary: Bright Azure Blue (trust, safety, reliability)
+$primary: $bright-azure-blue;
 
-// Import Bootstrap after variable overrides
-@import 'bootstrap/scss/bootstrap';
+// Secondary: Deep Teal (stability, seriousness, trustworthiness)
+$secondary: $deep-teal;
+
+// Info: Could use a lighter shade of primary
+$info: color.adjust($bright-azure-blue, $lightness: 10%);
+
+// Map semantic colors to Bootstrap's state colors
+$success: map.get($success-scale, 600); // #039855
+$danger: map.get($error-scale, 600); // #D92D20
+$warning: map.get($warning-scale, 500); // #F79009
+
+// Light and Dark variants
+$light: map.get($gray-scale, 100); // #F2F4F7
+$dark: map.get($gray-scale, 900); // #101828
+
+// Muted color
+$muted: map.get($gray-scale, 500); // #667085
+
+// Body and text colors
+$body-bg: #ffffff;
+$body-color: map.get($gray-scale, 900); // #101828
+
+// Border colors
+$border-color: map.get($gray-scale, 200); // #E4E7EC
+
+// Override Bootstrap's border radius variables (using Figma values)
+$border-radius-sm: $figma-radius-sm; // 2px
+$border-radius: $figma-radius-default; // 4px (Default)
+$border-radius-lg: $figma-radius-lg; // 8px
+$border-radius-xl: $figma-radius-xl; // 12px
+
+// Typography overrides
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// Heading font sizes (will be customized based on Figma typography scale)
+$h1-font-size: 2.5rem;
+$h2-font-size: 2rem;
+$h3-font-size: 1.75rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+
+// Import Bootstrap variables (will use our overrides above)
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+// Override Bootstrap's spacing system with Figma spacing values
+// Merge with Bootstrap's default $spacers and extend with our custom values
+$spacers: map-merge(
+  $spacers,
+  (
+    0: 0,
+    px: $spacing-px,
+    0_5: $spacing-0_5,
+    1: $spacing-1,
+    1_5: $spacing-1_5,
+    2: $spacing-2,
+    2_5: $spacing-2_5,
+    3: $spacing-3,
+    3_5: $spacing-3_5,
+    4: $spacing-4,
+    5: $spacing-5,
+    6: $spacing-6,
+    7: $spacing-7,
+    8: $spacing-8,
+    9: $spacing-9,
+    10: $spacing-10,
+    11: $spacing-11,
+    12: $spacing-12,
+    14: $spacing-14,
+    16: $spacing-16,
+    20: $spacing-20,
+    24: $spacing-24,
+    28: $spacing-28,
+    32: $spacing-32,
+    36: $spacing-36,
+    40: $spacing-40,
+    48: $spacing-48,
+    52: $spacing-52,
+    56: $spacing-56,
+    60: $spacing-60,
+    64: $spacing-64,
+    72: $spacing-72,
+    80: $spacing-80,
+    96: $spacing-96,
+  )
+);
+
+// Import the rest of Bootstrap
+@import "bootstrap/scss/bootstrap";
 
 // ============================================
 // CUSTOM COMPONENT STYLES
@@ -94,3 +238,201 @@ $border-radius-xl: $border-radius-8;
 // Custom styles for components that need additional styling
 // beyond Bootstrap's default classes will go here
 
+// ============================================
+// BUTTON STYLES
+// ============================================
+
+// Base button styling - make all buttons rounded (pill shape)
+.btn {
+  border-radius: $figma-radius-full !important;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease-in-out;
+  border-width: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  // Icon spacing
+  .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  // Leading icon
+  .btn-icon-leading {
+    margin-right: 0;
+  }
+
+  // Trailing icon
+  .btn-icon-trailing {
+    margin-left: 0;
+  }
+}
+
+// Pill buttons (explicit class for fully rounded buttons)
+.btn-pill {
+  border-radius: $figma-radius-full !important;
+}
+
+// Ghost/Outlined button variant
+.btn-ghost {
+  background-color: transparent !important;
+  border: 1px solid currentColor !important;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  &:active,
+  &:focus {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  // Ghost variants for each color
+  &.btn-primary {
+    color: $primary !important;
+    border-color: $primary !important;
+
+    &:hover {
+      background-color: rgba($primary, 0.1) !important;
+      color: color.adjust($primary, $lightness: -10%) !important;
+      border-color: color.adjust($primary, $lightness: -10%) !important;
+    }
+  }
+
+  &.btn-success {
+    color: $success !important;
+    border-color: $success !important;
+
+    &:hover {
+      background-color: rgba($success, 0.1) !important;
+      color: color.adjust($success, $lightness: -10%) !important;
+      border-color: color.adjust($success, $lightness: -10%) !important;
+    }
+  }
+
+  &.btn-danger {
+    color: $danger !important;
+    border-color: $danger !important;
+
+    &:hover {
+      background-color: rgba($danger, 0.1) !important;
+      color: color.adjust($danger, $lightness: -10%) !important;
+      border-color: color.adjust($danger, $lightness: -10%) !important;
+    }
+  }
+
+  &.btn-secondary {
+    color: $secondary !important;
+    border-color: $secondary !important;
+
+    &:hover {
+      background-color: rgba($secondary, 0.1) !important;
+      color: color.adjust($secondary, $lightness: -10%) !important;
+      border-color: color.adjust($secondary, $lightness: -10%) !important;
+    }
+  }
+}
+
+// Circular icon-only buttons
+.btn-circle {
+  border-radius: 50% !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.btn-sm {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &.btn-lg {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+// Button hover states - slightly lighter for solid buttons (not ghost)
+.btn-primary:not(.btn-ghost):hover {
+  background-color: color.adjust($primary, $lightness: 5%);
+  border-color: color.adjust($primary, $lightness: 5%);
+}
+
+.btn-success:not(.btn-ghost):hover {
+  background-color: color.adjust($success, $lightness: 5%);
+  border-color: color.adjust($success, $lightness: 5%);
+}
+
+.btn-danger:not(.btn-ghost):hover {
+  background-color: color.adjust($danger, $lightness: 5%);
+  border-color: color.adjust($danger, $lightness: 5%);
+}
+
+.btn-secondary:not(.btn-ghost):hover {
+  background-color: color.adjust($secondary, $lightness: 5%);
+  border-color: color.adjust($secondary, $lightness: 5%);
+}
+
+// Disabled state styling
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Additional border radius utility classes (extending Bootstrap's rounded utilities)
+.rounded-md {
+  border-radius: $figma-radius-md !important; // 6px
+}
+
+.rounded-2xl {
+  border-radius: $figma-radius-2xl !important; // 16px
+}
+
+.rounded-3xl {
+  border-radius: $figma-radius-3xl !important; // 24px
+}
+
+.rounded-full {
+  border-radius: $figma-radius-full !important; // 999px
+}
+
+// Avatar component styles (custom component)
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+
+  &-status {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    &.online::after {
+      background-color: map.get($success-scale, 500);
+    }
+
+    &.offline::after {
+      background-color: map.get($gray-scale, 400);
+    }
+  }
+}

@@ -1,12 +1,8 @@
-import './App.css'
+import "./App.css";
+import ButtonGallery from "./pages/ButtonGallery";
 
 function App() {
-  return (
-    <div className="container py-4">
-      <h1>Design System React Components</h1>
-      <p>Component gallery will be implemented here.</p>
-    </div>
-  )
+  return <ButtonGallery />;
 }
 
-export default App
+export default App;
